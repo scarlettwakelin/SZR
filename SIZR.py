@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 N = 500
 step = 50
 
-def SIZR(t, s, i, z, r, alpha, beta, gamma, delta, rho):
+def SIZR(t, s, i, z, r, alpha, beta, gamma, zeta, rho):
     t[0] = 0
     s[0] = N
     i[0] = 0
@@ -18,8 +18,8 @@ def SIZR(t, s, i, z, r, alpha, beta, gamma, delta, rho):
        t[x] = x
        s[x] = s[x-1] + dt* (-beta * s[x-1] * z[x-1])
        i[x] = i[x-1] + dt* (beta * s[x-1]* z[x-1]- rho* i[x-1]- gamma * i[x-1])
-       z[x] = z[x-1] + dt* (rho* i[x-1] + delta * r[x-1]  - alpha * s[x-1] * z[x-1])
-       r[x] = r[x-1] + dt*(gamma * s[x-1] + gamma * i[x-1] + alpha * s[x-1] * z[x-1] - delta * r[x-1])
+       z[x] = z[x-1] + dt* (rho* i[x-1] + zeta * r[x-1]  - alpha * s[x-1] * z[x-1])
+       r[x] = r[x-1] + dt*(gamma * s[x-1] + gamma * i[x-1] + alpha * s[x-1] * z[x-1] - zeta * r[x-1])
 
 t = np.linspace(0, 100, 100)
 
