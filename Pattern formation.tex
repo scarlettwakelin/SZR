@@ -1,0 +1,79 @@
+\documentclass{mm2}
+\usepackage{bbm}
+\usepackage{bbold}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{pdfpages}
+\usepackage{amssymb}
+
+
+% FILL THIS WITH YOUR CIS USERNAME
+\cisid{lhtp39} 
+\title{Pattern formation in viral epidemics}
+
+\begin{document}
+\begin{enumerate}
+	\item\textit{'When zombies attack! Mathematical modelling of an outbreak of zombie infection'} \newline
+	This article introduced a model where there was a period of 24 hours after a human gets bitten before they become a zombie. Changes to the model were: \newline
+	\begin{itemize}
+		\item Susceptibles first move to an infected class once infected and remain there for a period of time.
+		\item Infected individuals can still die natural death before becoming a zombie.
+	\end{itemize}
+	This is called the SIZR model and is shown in Figure (\ref{sizr}).\newline
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=15cm]{sizr.png}
+		\caption{An SIZR model.}
+		\label{sizr}
+	\end{figure}\newline
+	You find out that even with the latent period of infection, zombies still tak eover but it takes twice as long as with no latent period. Which is shown in Figure (\ref{sizrgraph}).\newline
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=10cm]{sizrgraph.png}
+		\caption{An outbreak with latent infection.}
+			\label{sizrgraph}
+	\end{figure}\newpage
+	They then decided to try and contain the outbreak to have a partial quaranitine of zombies. The changes frm the last model were:
+	\begin{itemize}
+		\item The quarantined area only contains members of the infected or zombie populations.
+		\item There is a chance some zombies will escape, but those that try to will be killed.
+		\item Those killed individuals enter the removed class.
+	\end{itemize}
+	This model is then called the SIZRQ,shown in Figure (\ref{sizrq}).\newline
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=10cm]{sizrq.png}
+		\caption{An SIZRQ model.}
+		\label{sizrq}
+	\end{figure}\newline
+	You find that if the zombies infected the humans faster than humans can kill them , then eradication depends critically on quarantining these in the primary stages of infection. However this is difficult to do as identifying such individuals is not obvious and quarantining large numbers is unrealistic due to infrastructure limitations. Figure (\ref{sizrqgraph}) shows that the effect of quarantine is to slightly delay  the time to eradicate humans.\newline
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=10cm]{sizrqgraph.png}
+		\caption{An outbreak with quarantine.}
+		\label{sizrqgraph}
+	\end{figure}
+	\newpage
+	The article then goes on to look at a model where there is a cure for zombies to allow them to return to their human form, but the new human is still susceptible to becoming a zombie, so the cure doesn't provide immunity. Changes to the old model are:
+	\begin{itemize}
+		\item As we now have treatment we don't need the quarantine so we remove this from the model.
+		\item The cure will allow zombies to return to their original form regardless of how they became zombies.
+		\item The cure doesn't provide immunity.
+	\end{itemize}
+	The SIZR model is then set up to include treatment,  as shown in (\ref{sizrcure}). \newline
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=15cm]{sizrcure.png}
+		\caption{An SIZR cure model.}
+		\label{sizrcure}
+	\end{figure}\newline
+	Working through the maths shows that the coexistence equilibrium is stable, but humans only exist in low numbers as shown in (\ref{sizrcuregraph}).
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=10cm]{sizrcuregraph.png}
+		\caption{The model with treatment, using the same parameter values as the basic model.}
+		\label{sizrcuregraph}
+	\end{figure}\newline
+	At the end of the article it states that if a longer time scale was looked at it would lead to the collapse of civilisation. Also if you included the birth and death rates it would mean the zombies are provided with a limitless supply of new bodies to infest. Therefore if there was a zombie outbreak humans must act quickly to eradicate them before they eradicate us.
+\end{enumerate}
+\end{document}
