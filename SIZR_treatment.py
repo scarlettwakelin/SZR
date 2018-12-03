@@ -10,7 +10,7 @@ step = 200
 def clamp(minimum, x, maximum):
     return max(minimum, min(x, maximum))
 
-def SIZR(t, s, i, z, r, alpha, beta, gamma, zeta, rho):
+def SIZR(t, s, i, z, r, alpha, beta, delta, zeta, rho, c):
     t[0] = 0
     s[0] = N
     i[0] = 0
@@ -26,15 +26,16 @@ def SIZR(t, s, i, z, r, alpha, beta, gamma, zeta, rho):
 #       r[x] = r[x-1] + dt*(gamma * s[x-1] + gamma * i[x-1] + alpha * s[x-1] * z[x-1] - zeta * r[x-1])
 
        StoI = clamp(0, beta * s[x-1] * z[x-1], s[x-1])
-       StoR = max(0, gamma * s[x-1])
-       ItoR = max(0, gamma * i[x-1])
-       ItoZ = max(0, rho* i[x-1])
+       StoR = max(0, delta * s[x-1])
+       ItoR = max(0, delta * i[x-1])
+       ItoZ = max(0, rho * i[x-1])
        RtoZ = max(0, zeta * r[x-1])
        ZtoR = clamp(0, alpha * s[x-1] * z[x-1], z[x-1])
+       ZtoS = max(0, c * z[x-1])
 
-       s[x] = s[x-1] + dt* (- StoI - StoR)
+       s[x] = s[x-1] + dt* (- StoI - StoR + ZtoS)
        i[x] = i[x-1] + dt* (StoI - ItoZ - ItoR)
-       z[x] = z[x-1] + dt* (ItoZ + RtoZ - ZtoR)
+       z[x] = z[x-1] + dt* (ItoZ + RtoZ - ZtoR - ZtoS)
        r[x] = r[x-1] + dt* (StoR + ItoR + ZtoR - RtoZ)
 
 #       print("x=%u, total=%2.2f s=%f=>%f, i=%f=>%f, z=%f=>%f, r=%f=>%f, alpha * s[x-1] * z[x-1]=%2.2f" % (x, s[x]+i[x]+z[x]+r[x], s[x-1], s[x], i[x-1], i[x], z[x-1], z[x], r[x-1], r[x], alpha * s[x-1] * z[x-1]))
@@ -50,14 +51,14 @@ z = [0]*step
 r = [0]*step
 
 #SIZR(t, s, i, z, r, 0.005, 0.0095, 0.0001, 0.0001, 0.005)
-SIZR(t, s, i, z, r, 0.05, 0.0095, 0.0001, 0.0001, 0.05)
+SIZR(t, s, i, z, r, 0.00075, 0.0055, 0.0001, 0.09, 0.05, 0.001)
 
 #print(t)
 
 plt.clf() #clears plot
 plt.xlabel('Time/ days')
 plt.ylabel('Number')
-title = 'SIZR_model'
+title = 'SIZR_treatment_model'
 plt.title(title)
 plt.plot(t, s, color='b', linestyle='-', label='Susceptible')
 plt.plot(t, i, color='c', linestyle='-', label='Infected')
